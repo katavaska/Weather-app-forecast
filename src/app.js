@@ -57,6 +57,20 @@ function displayForecast(response) {
 
   let forecastHTML = `<div class="row">`;
   forecast.forEach(function (forecastDay, index) {
+    let minTemp = forecastDay.temp.min;
+    if (minTemp > 0) {
+      minTemp.innerHTML = `+${Math.round(minTemp)}`;
+    } else {
+      minTemp.innerHTML = `-${Math.round(minTemp)}`;
+    }
+
+    let maxTemp = forecastDay.temp.max;
+    if (maxTemp > 0) {
+      minTemp.innerHTML = `+${Math.round(maxTemp)}`;
+    } else {
+      maxTemp.innerHTML = `-${Math.round(maxTemp)}`;
+    }
+
     if (index < 6) {
       forecastHTML =
         forecastHTML +
@@ -73,10 +87,10 @@ function displayForecast(response) {
                   width="46"
                 />
                 <div class="weather-forecast-temperatures">
-                  <p class="temperature-day-max">+ ${Math.round(
+                  <p class="temperature-day-max">${Math.round(
                     forecastDay.temp.max
                   )}°C</p>
-                  <p class="temperature-night-min">+${Math.round(
+                  <p class="temperature-night-min">${Math.round(
                     forecastDay.temp.min
                   )}°C</p>
                 </div>
