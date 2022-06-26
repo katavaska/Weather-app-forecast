@@ -44,6 +44,24 @@ function formatTime() {
   return `${time}`;
 }
 
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  forecastElement.innerHTML = `<div class="row">
+              <div class="col-2">
+                <h5 class="weather-forecast-date">Mo</h5>
+                <img
+                  src="https://openweathermap.org/img/wn/02d@2x.png"
+                  alt=""
+                  width="46"
+                />
+                <div class="weather-forecast-temperatures">
+                <p class="temperature-day-max">+16°C</p>
+                <p class="temperature-night-min">+8°C</p>
+                </div>
+              </div>
+            </div>`;
+}
+
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
   let cityElement = document.querySelector("#city");
@@ -86,6 +104,7 @@ function handleSubmit(event) {
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
   let temperatureElement = document.querySelector("#temperature");
+  // remove the active class to celsius link
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
@@ -100,6 +119,7 @@ function displayCelsiusTemperature(event) {
   temperatureElement.innerHTML = Math.round(celsiusTemperature);
 }
 let celsiusTemperature = null;
+
 let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
@@ -109,4 +129,5 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
+displayForecast();
 search("Lisbon");
