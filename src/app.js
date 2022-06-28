@@ -80,11 +80,9 @@ function displayForecast(response) {
                   forecastDay.dt
                 )}</h5>
                 <img
-                  src="https://openweathermap.org/img/wn/${
-                    forecastDay.weather[0].icon
-                  }@2x.png"
+                  src="./images/${forecastDay.weather[0].icon}.svg"
                   alt=""
-                  width="46"
+                  width="42"
                 />
                 <div class="weather-forecast-temperatures">
                   <p class="temperature-day-max">${maxTemp}°C</p>
@@ -128,7 +126,7 @@ function displayTemperature(response) {
   time.innerHTML = formatTime();
   iconElement.setAttribute(
     "src",
-    `https://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+    `./images/${response.data.weather[0].icon}.svg`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
 
