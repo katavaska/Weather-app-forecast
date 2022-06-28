@@ -59,16 +59,16 @@ function displayForecast(response) {
   forecast.forEach(function (forecastDay, index) {
     let minTemp = forecastDay.temp.min;
     if (minTemp > 0) {
-      minTemp.innerHTML = `+${Math.round(minTemp)}`;
+      minTemp = `+${Math.round(minTemp)}`;
     } else {
-      minTemp.innerHTML = `-${Math.round(minTemp)}`;
+      minTemp = `-${Math.round(minTemp)}`;
     }
 
     let maxTemp = forecastDay.temp.max;
     if (maxTemp > 0) {
-      minTemp.innerHTML = `+${Math.round(maxTemp)}`;
+      maxTemp = `+${Math.round(maxTemp)}`;
     } else {
-      maxTemp.innerHTML = `-${Math.round(maxTemp)}`;
+      maxTemp = `-${Math.round(maxTemp)}`;
     }
 
     if (index < 6) {
@@ -87,12 +87,8 @@ function displayForecast(response) {
                   width="46"
                 />
                 <div class="weather-forecast-temperatures">
-                  <p class="temperature-day-max">${Math.round(
-                    forecastDay.temp.max
-                  )}°C</p>
-                  <p class="temperature-night-min">${Math.round(
-                    forecastDay.temp.min
-                  )}°C</p>
+                  <p class="temperature-day-max">${maxTemp}°C</p>
+                  <p class="temperature-night-min">${minTemp}°C</p>
                 </div>
               </div>
             `;
@@ -158,7 +154,12 @@ function displayFahrenheitTemperature(event) {
   celsiusLink.classList.remove("active");
   fahrenheitLink.classList.add("active");
   let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
-  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+
+  if (fahrenheitTemperature > 0) {
+    temperatureElement.innerHTML = `+${Math.round(fahrenheitTemperature)}`;
+  } else {
+    temperatureElement.innerHTML = `-${Math.round(fahrenheitTemperature)}`;
+  }
 }
 
 function displayCelsiusTemperature(event) {
@@ -166,7 +167,11 @@ function displayCelsiusTemperature(event) {
   celsiusLink.classList.add("active");
   fahrenheitLink.classList.remove("active");
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+  if (celsiusTemperature > 0) {
+    temperatureElement.innerHTML = `+${Math.round(celsiusTemperature)}`;
+  } else {
+    temperatureElement.innerHTML = `-${Math.round(celsiusTemperature)}`;
+  }
 }
 let celsiusTemperature = null;
 
